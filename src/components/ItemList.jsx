@@ -1,6 +1,15 @@
 import SingleItem from "./SingleItem";
+import PropTypes from "prop-types";
 
-function ItemList({ title, items }) {
+ItemList.propTypes = {
+    title: PropTypes.string.isRequired,
+    items: PropTypes.number.isRequired,
+    path: PropTypes.number.isRequired,
+    idPath: PropTypes.number.isRequired,
+    itemsArray: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+function ItemList({ title, items, itemsArray, path, idPath }) {
 
     return (
         <div>
@@ -8,41 +17,26 @@ function ItemList({ title, items }) {
             <div className="item-list">
                 <div className="item-list__header">
                     <h2>{title} populares</h2>
-                    <a className="item-list__link" href="/">
+                    <a href={path} className="item-list__link">
                         Mostrar tudo
                     </a>
                 </div>
 
                 <div className="item-list__container">
 
-                    {
-                        items === 5 ? (
-                        <>
-                            <SingleItem/>
-                            <SingleItem/>
-                            <SingleItem/>
-                            <SingleItem/>
-                            <SingleItem/>
-                        </> ) : (
-                            <>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                                <SingleItem/>
-                            </>
-                        )
+                    {itemsArray
+                        .filter((currentValue, index) => index < items)
+                        .map((currObj, index) => (
+                            <SingleItem
+                                {...currObj}
+                                idPath={idPath}
+                                key={`${title}-${index}`}
+                            />
+                        ))
                     }
-
-
                 </div>
-            </div>
 
+            </div>
         </div>
     )
 }
