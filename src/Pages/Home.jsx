@@ -1,9 +1,9 @@
+import Main from "../components/MainSection"
+
 function Home() {
 
     return (
-        <div>
-
-        </div>
+        <Main />
     )
 }
 

@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 SingleItem.propTypes = {
     id: PropTypes.string.isRequired,
@@ -21,7 +22,7 @@ function SingleItem({ id, name, image, banner, artist = undefined, idPath }) {
 
     return (
         <>
-            <a href={`${idPath}/${id}`} className="single-item">
+            <Link to={`${idPath}/${id}`} className="single-item">
                 <div className="single-item__div-image-button">
                     <div className="single-item__div-image">
                         <img
@@ -46,7 +47,7 @@ function SingleItem({ id, name, image, banner, artist = undefined, idPath }) {
                         {artist ?? "Artista"}
                     </p>
                 </div>
-            </a>
+            </Link>
         </>
     )
 }
